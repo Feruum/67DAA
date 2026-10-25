@@ -1,0 +1,8 @@
+$ python3 -m unittest discover -s tools -p test_*.py
+.s............s.
+----------------------------------------------------------------------
+Ran 16 tests in 3.792s
+
+OK (skipped=2)
+
+Exit code: 0

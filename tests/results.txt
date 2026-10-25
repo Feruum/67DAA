@@ -1,0 +1,18 @@
+Command: python tests/run_tests.py
+Python: 3.12.14
+Java execution: java -Xmx384m -cp .build/Java Main
+Timeout: 20 seconds per Java input batch
+PASS small cases: 39
+PASS mixed requests in one process: 117
+PASS semantic witness acceptance/rejection checks: 17
+PASS full limits: dsu_full; n=100000, edges/operations=250000; execution=0.584s
+PASS full limits: kruskal_full; n=100000, edges/operations=250000; execution=0.412s
+PASS full limits: prim_full; n=100000, edges/operations=250000; execution=0.472s
+PASS full limits: scc_full_chain; n=100000, edges/operations=250000; execution=0.557s
+PASS full limits: scc_full_cycle; n=100000, edges/operations=250000; execution=0.395s
+PASS full limits: topo_full_cycle; n=100000, edges/operations=250000; execution=0.317s
+PASS full limits: topo_full_chain; n=100000, edges/operations=250000; execution=0.361s
+PASS full limits: dag_full_chain; n=100000, edges/operations=250000; execution=0.444s
+PASS full limits: dag_full_unreachable_cycle; n=100000, edges/operations=250000; execution=0.352s
+PASS all own tests
+Scale execution time includes JSON serialization, Java startup, parsing, algorithm, output and JSON decoding; it is not an algorithm benchmark.

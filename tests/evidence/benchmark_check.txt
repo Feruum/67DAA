@@ -1,0 +1,7 @@
+$ python3 tests/run_benchmark.py
+PASS benchmark: 3 sizes, 5 timings per method per size, all forests valid
+n=1000, m=4000: Kruskal median 1.392 ms; Prim median 1.292 ms
+n=10000, m=40000: Kruskal median 26.856 ms; Prim median 13.549 ms
+n=50000, m=200000: Kruskal median 41.209 ms; Prim median 105.813 ms
+
+Exit code: 0

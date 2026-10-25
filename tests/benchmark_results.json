@@ -1,0 +1,193 @@
+{
+  "command": "python tests/run_benchmark.py",
+  "environment": {
+    "recorded_at_utc": "2026-10-24T21:26:45.602507+00:00",
+    "os": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "cpu": "AMD EPYC 9V74 80-Core Processor",
+    "logical_cpus_reported": 9,
+    "java": "openjdk version \"17.0.20\" 2026-07-21\nOpenJDK Runtime Environment (build 17.0.20+8-1-24.04-Ubuntu)\nOpenJDK 64-Bit Server VM (build 17.0.20+8-1-24.04-Ubuntu, mixed mode, sharing)",
+    "python": "3.12.14",
+    "heap_limit": "-Xmx384m"
+  },
+  "generator": {
+    "source": "tests/Benchmark.java: Graph constructor",
+    "random": "java.util.Random",
+    "seeds": [
+      2537,
+      2538,
+      2539
+    ],
+    "description": "For each vertex v=1..n-1, add one edge from a random vertex below v, with weight in [-1000,-1]. Add random endpoint pairs, allowing loops and parallel edges, with weights in [0,1000] until m=4n. Shuffle all edges using the same Random instance.",
+    "independent_optimum": "The n-1 negative edges form a spanning tree. Every other edge is nonnegative, so any different n-1-edge tree costs strictly more. The expected cost is the sum of the generated negative edges, computed before either algorithm."
+  },
+  "protocol": {
+    "timer": "System.nanoTime",
+    "unit": "milliseconds",
+    "warmup_calls_per_method_per_size": 3,
+    "measured_calls_per_method_per_size": 5,
+    "order": "Kruskal then Prim on even runs; Prim then Kruskal on odd runs",
+    "includes": [
+      "Input adapter conversion",
+      "algorithm adjacency or sorting structures",
+      "algorithm computation",
+      "result object construction"
+    ],
+    "excludes": [
+      "compilation",
+      "JVM startup",
+      "graph generation",
+      "JSON parsing",
+      "JSON serialization",
+      "console or file I/O",
+      "result validation"
+    ],
+    "validation": "Before warm-up, and after every warm-up or measured call: exact independent minimum cost, one component, n-1 unique original IDs, no loops, selected-weight sum, and BFS connectivity. Connected with n-1 edges implies acyclic. All selected edges must be negative.",
+    "limitations": "One connected, sparse, planted-tree distribution; all tree edges are lighter than all additional edges. These are not general random-weight graphs. Five samples on one shared runtime are affected by JIT compilation, allocation, garbage collection and machine load. No explicit System.gc calls. Measurements do not prove asymptotic complexity or establish a universal winner."
+  },
+  "results": [
+    {
+      "n": 1000,
+      "m": 4000,
+      "seed": 2537,
+      "expected_cost": -495268,
+      "warmup_per_method": 3,
+      "measured_runs_per_method": 5,
+      "validated_calls_per_method": 9,
+      "kruskal_ms": [
+        1.435183,
+        2.008837,
+        1.392188,
+        1.363505,
+        1.332658
+      ],
+      "prim_ms": [
+        1.966613,
+        1.291586,
+        1.34003,
+        1.111675,
+        0.965906
+      ],
+      "kruskal_median_ms": 1.392188,
+      "prim_median_ms": 1.291586,
+      "kruskal_validation": {
+        "cost": -495268,
+        "components": 1,
+        "selected_edge_count": 999,
+        "selected_weight_sum": -495268,
+        "vertices_reached": 1000,
+        "unique_original_ids": true,
+        "no_loops": true,
+        "acyclic": true,
+        "contains_exactly_the_known_minimum_tree": true
+      },
+      "prim_validation": {
+        "cost": -495268,
+        "components": 1,
+        "selected_edge_count": 999,
+        "selected_weight_sum": -495268,
+        "vertices_reached": 1000,
+        "unique_original_ids": true,
+        "no_loops": true,
+        "acyclic": true,
+        "contains_exactly_the_known_minimum_tree": true
+      },
+      "all_warmup_and_measured_answers_valid": true
+    },
+    {
+      "n": 10000,
+      "m": 40000,
+      "seed": 2538,
+      "expected_cost": -5027573,
+      "warmup_per_method": 3,
+      "measured_runs_per_method": 5,
+      "validated_calls_per_method": 9,
+      "kruskal_ms": [
+        26.855903,
+        11.616107,
+        10.72971,
+        27.613385,
+        29.707091
+      ],
+      "prim_ms": [
+        13.548518,
+        16.562942,
+        11.447623,
+        11.503516,
+        16.114115
+      ],
+      "kruskal_median_ms": 26.855903,
+      "prim_median_ms": 13.548518,
+      "kruskal_validation": {
+        "cost": -5027573,
+        "components": 1,
+        "selected_edge_count": 9999,
+        "selected_weight_sum": -5027573,
+        "vertices_reached": 10000,
+        "unique_original_ids": true,
+        "no_loops": true,
+        "acyclic": true,
+        "contains_exactly_the_known_minimum_tree": true
+      },
+      "prim_validation": {
+        "cost": -5027573,
+        "components": 1,
+        "selected_edge_count": 9999,
+        "selected_weight_sum": -5027573,
+        "vertices_reached": 10000,
+        "unique_original_ids": true,
+        "no_loops": true,
+        "acyclic": true,
+        "contains_exactly_the_known_minimum_tree": true
+      },
+      "all_warmup_and_measured_answers_valid": true
+    },
+    {
+      "n": 50000,
+      "m": 200000,
+      "seed": 2539,
+      "expected_cost": -24972851,
+      "warmup_per_method": 3,
+      "measured_runs_per_method": 5,
+      "validated_calls_per_method": 9,
+      "kruskal_ms": [
+        46.020424,
+        38.573801,
+        45.532488,
+        41.209223,
+        39.133344
+      ],
+      "prim_ms": [
+        126.801812,
+        103.270344,
+        98.035784,
+        105.81264,
+        107.006976
+      ],
+      "kruskal_median_ms": 41.209223,
+      "prim_median_ms": 105.81264,
+      "kruskal_validation": {
+        "cost": -24972851,
+        "components": 1,
+        "selected_edge_count": 49999,
+        "selected_weight_sum": -24972851,
+        "vertices_reached": 50000,
+        "unique_original_ids": true,
+        "no_loops": true,
+        "acyclic": true,
+        "contains_exactly_the_known_minimum_tree": true
+      },
+      "prim_validation": {
+        "cost": -24972851,
+        "components": 1,
+        "selected_edge_count": 49999,
+        "selected_weight_sum": -24972851,
+        "vertices_reached": 50000,
+        "unique_original_ids": true,
+        "no_loops": true,
+        "acyclic": true,
+        "contains_exactly_the_known_minimum_tree": true
+      },
+      "all_warmup_and_measured_answers_valid": true
+    }
+  ]
+}

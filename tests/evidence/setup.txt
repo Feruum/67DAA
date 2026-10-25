@@ -1,0 +1,5 @@
+$ python3 tools/run.py --setup
+PASS setup: ping
+Language: Java
+
+Exit code: 0

@@ -1,0 +1,447 @@
+{
+  "base_input": {
+    "task": "dag",
+    "n": 6,
+    "source": 0,
+    "edges": [
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        0,
+        2,
+        8
+      ],
+      [
+        1,
+        2,
+        -7
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        1,
+        4,
+        2
+      ]
+    ]
+  },
+  "base_dag_result": {
+    "acyclic": true,
+    "distance": [
+      0,
+      3,
+      -4,
+      0,
+      5,
+      null
+    ],
+    "parent_edge": [
+      -1,
+      0,
+      2,
+      3,
+      4,
+      -1
+    ]
+  },
+  "shifted_input": {
+    "task": "dag",
+    "n": 5,
+    "source": 3,
+    "edges": [
+      [
+        3,
+        1,
+        2
+      ],
+      [
+        1,
+        4,
+        -3
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        0,
+        2,
+        1
+      ]
+    ]
+  },
+  "shifted_dag_result": {
+    "acyclic": true,
+    "distance": [
+      null,
+      2,
+      null,
+      0,
+      -1
+    ],
+    "parent_edge": [
+      -1,
+      0,
+      -1,
+      -1,
+      1
+    ]
+  },
+  "tied_input": {
+    "task": "dag",
+    "n": 5,
+    "source": 0,
+    "edges": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        1,
+        3,
+        3
+      ],
+      [
+        2,
+        3,
+        3
+      ],
+      [
+        0,
+        3,
+        5
+      ],
+      [
+        3,
+        4,
+        -1
+      ]
+    ]
+  },
+  "tied_dag_result": {
+    "acyclic": true,
+    "distance": [
+      0,
+      2,
+      2,
+      5,
+      4
+    ],
+    "parent_edge": [
+      -1,
+      0,
+      2,
+      5,
+      6
+    ]
+  },
+  "helper_calls": [
+    {
+      "name": "reachable target",
+      "call": "reconstructPath(0, 3, baseEdges, baseParents)",
+      "source": 0,
+      "target": 3,
+      "parent_edge": [
+        -1,
+        0,
+        2,
+        3,
+        4,
+        -1
+      ],
+      "route": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "selected_edge_ids": [
+        0,
+        2,
+        3
+      ],
+      "directed_edges": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          -7
+        ],
+        [
+          2,
+          3,
+          4
+        ]
+      ],
+      "total_weight": 0,
+      "expected_distance": 0,
+      "direction_verified": true,
+      "passed": true
+    },
+    {
+      "name": "source target",
+      "call": "reconstructPath(0, 0, baseEdges, baseParents)",
+      "source": 0,
+      "target": 0,
+      "parent_edge": [
+        -1,
+        0,
+        2,
+        3,
+        4,
+        -1
+      ],
+      "route": [
+        0
+      ],
+      "selected_edge_ids": [],
+      "directed_edges": [],
+      "total_weight": 0,
+      "expected_distance": 0,
+      "direction_verified": true,
+      "passed": true
+    },
+    {
+      "name": "unreachable target",
+      "call": "reconstructPath(0, 5, baseEdges, baseParents)",
+      "source": 0,
+      "target": 5,
+      "parent_edge": [
+        -1,
+        0,
+        2,
+        3,
+        4,
+        -1
+      ],
+      "route": [],
+      "selected_edge_ids": [],
+      "directed_edges": [],
+      "total_weight": null,
+      "expected_distance": null,
+      "direction_verified": false,
+      "passed": true
+    },
+    {
+      "name": "nonzero source and distance minus one",
+      "call": "reconstructPath(3, 4, shiftedEdges, shiftedParents)",
+      "source": 3,
+      "target": 4,
+      "parent_edge": [
+        -1,
+        0,
+        -1,
+        -1,
+        1
+      ],
+      "route": [
+        3,
+        1,
+        4
+      ],
+      "selected_edge_ids": [
+        0,
+        1
+      ],
+      "directed_edges": [
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          1,
+          4,
+          -3
+        ]
+      ],
+      "total_weight": -1,
+      "expected_distance": -1,
+      "direction_verified": true,
+      "passed": true
+    },
+    {
+      "name": "parallel edge from actual DAG result",
+      "call": "reconstructPath(0, 1, tiedEdges, tiedParents)",
+      "source": 0,
+      "target": 1,
+      "parent_edge": [
+        -1,
+        0,
+        2,
+        5,
+        6
+      ],
+      "route": [
+        0,
+        1
+      ],
+      "selected_edge_ids": [
+        0
+      ],
+      "directed_edges": [
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      "total_weight": 2,
+      "expected_distance": 2,
+      "direction_verified": true,
+      "passed": true
+    },
+    {
+      "name": "tied route from actual DAG result",
+      "call": "reconstructPath(0, 4, tiedEdges, tiedParents)",
+      "source": 0,
+      "target": 4,
+      "parent_edge": [
+        -1,
+        0,
+        2,
+        5,
+        6
+      ],
+      "route": [
+        0,
+        3,
+        4
+      ],
+      "selected_edge_ids": [
+        5,
+        6
+      ],
+      "directed_edges": [
+        [
+          0,
+          3,
+          5
+        ],
+        [
+          3,
+          4,
+          -1
+        ]
+      ],
+      "total_weight": 4,
+      "expected_distance": 4,
+      "direction_verified": true,
+      "passed": true
+    },
+    {
+      "name": "alternative valid parallel edge and tied route",
+      "call": "reconstructPath(0, 4, tiedEdges, alternateParallelParents)",
+      "source": 0,
+      "target": 4,
+      "parent_edge": [
+        -1,
+        1,
+        2,
+        3,
+        6
+      ],
+      "route": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "selected_edge_ids": [
+        1,
+        3,
+        6
+      ],
+      "directed_edges": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          3,
+          4,
+          -1
+        ]
+      ],
+      "total_weight": 4,
+      "expected_distance": 4,
+      "direction_verified": true,
+      "passed": true
+    },
+    {
+      "name": "alternative valid tied branch",
+      "call": "reconstructPath(0, 4, tiedEdges, alternateBranchParents)",
+      "source": 0,
+      "target": 4,
+      "parent_edge": [
+        -1,
+        0,
+        2,
+        4,
+        6
+      ],
+      "route": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "selected_edge_ids": [
+        2,
+        4,
+        6
+      ],
+      "directed_edges": [
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          3,
+          4,
+          -1
+        ]
+      ],
+      "total_weight": 4,
+      "expected_distance": 4,
+      "direction_verified": true,
+      "passed": true
+    }
+  ],
+  "passed": 8,
+  "command": "python tests/run_routes.py"
+}

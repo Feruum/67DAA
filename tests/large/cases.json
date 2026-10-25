@@ -1,0 +1,74 @@
+[
+  {
+    "name": "dsu_full",
+    "n": 100000,
+    "count": 250000,
+    "justification": "The chain merges the first i+2 vertices after operation i; later self/repeated unions keep [1,100000].",
+    "execution_seconds": 0.5840517840001667,
+    "status": "PASS"
+  },
+  {
+    "name": "kruskal_full",
+    "n": 100000,
+    "count": 250000,
+    "justification": "The graph is a chain with loops and more expensive parallel edges. Each cut needs its -1000000000 chain edge; total -99999000000000.",
+    "execution_seconds": 0.4117898630001946,
+    "status": "PASS"
+  },
+  {
+    "name": "prim_full",
+    "n": 100000,
+    "count": 250000,
+    "justification": "The graph is a chain with loops and more expensive parallel edges. Each cut needs its -1000000000 chain edge; total -99999000000000.",
+    "execution_seconds": 0.4721220720002748,
+    "status": "PASS"
+  },
+  {
+    "name": "scc_full_chain",
+    "n": 100000,
+    "count": 250000,
+    "justification": "Every non-loop edge moves forward, so every vertex is a separate SCC. Duplicate edges collapse to the chain condensation.",
+    "execution_seconds": 0.5569757230000505,
+    "status": "PASS"
+  },
+  {
+    "name": "scc_full_cycle",
+    "n": 100000,
+    "count": 250000,
+    "justification": "The first 100000 edges form one directed cycle through all vertices, so there is one SCC.",
+    "execution_seconds": 0.3945154849998289,
+    "status": "PASS"
+  },
+  {
+    "name": "topo_full_cycle",
+    "n": 100000,
+    "count": 250000,
+    "justification": "The all-vertex directed cycle has no topological order.",
+    "execution_seconds": 0.3166326770001433,
+    "status": "PASS"
+  },
+  {
+    "name": "topo_full_chain",
+    "n": 100000,
+    "count": 250000,
+    "justification": "The chain requires increasing vertex order; duplicate edges do not introduce cycles.",
+    "execution_seconds": 0.36126691300023595,
+    "status": "PASS"
+  },
+  {
+    "name": "dag_full_chain",
+    "n": 100000,
+    "count": 250000,
+    "justification": "Every source-to-k route takes exactly k chain steps, giving distance -k*1000000000; duplicate edge IDs provide valid alternative parents.",
+    "execution_seconds": 0.44396637500040015,
+    "status": "PASS"
+  },
+  {
+    "name": "dag_full_unreachable_cycle",
+    "n": 100000,
+    "count": 250000,
+    "justification": "Vertices 99998 and 99999 form a cycle disconnected from source 0; whole-graph cycle checking must reject it.",
+    "execution_seconds": 0.3522654319999674,
+    "status": "PASS"
+  }
+]
